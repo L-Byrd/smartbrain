@@ -17,7 +17,7 @@ class ProfileIcon extends Component {
     toggle = () => {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen
-        }))
+        }));
     }
 
     render() {
@@ -30,17 +30,16 @@ class ProfileIcon extends Component {
                     aria-expanded={this.state.dropdownOpen}
                 >
                     <img
-                        src="http://tachyons.io/img/logo.jpg"
-                        class="br-100 ba h3 w3 dib" alt="avatar" />
+                        src="https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png"
+                        className="br-100 ba h3 w3 dib" alt="avatar" />
                 </DropdownToggle>
-                    <DropdownMenu right
+                    <DropdownMenu end
                     className="b--transparent shadow-5" 
                     style={{marginTop: '20px', backgroundColor: 'rgba(255,255,255, 0.5)'}}>
-                        <DropdownItem>View Profile</DropdownItem>
+                        <DropdownItem onClick={this.props.toggleModal}>View Profile</DropdownItem>
                         <DropdownItem onClick={() => this.props.onRouteChange('signout')}>Sign Out</DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
-                
             </div>
         );
     }

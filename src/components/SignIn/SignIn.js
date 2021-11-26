@@ -1,4 +1,5 @@
 import React from "react";
+import { fetchSignIn } from "../../functions/functions";
 import './SignIn.css';
 
 class SignIn extends React.Component {
@@ -17,18 +18,17 @@ class SignIn extends React.Component {
         this.setState({signInPassword: event.target.value});
     }
 
+    saveAuthTokenInSession = (token) => {
+        window.sessionStorage.setItem('token', token);
+    } 
+
     onSubmitSignIn = () => {
-        fetch('http://localhost:3000/signin', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                email: this.state.signInEmail, 
-                password: this.state.signInPassword
-            })
-        }).then(response => response.json())
-        .then(user => {
-            if(user.id){
-                this.props.loadUser(user);
+        fetchSignIn(null, this.state.signInEmail, this.state.signInPassword)
+        .then(response => response.json())
+        .then(data => {
+            if(data.user && data.success === true){
+                this.saveAuthTokenInSession(data.token);
+                this.props.loadUser(data.user);
                 this.props.onRouteChange('home');
             }else{
                 alert('Invalid Sign In');
