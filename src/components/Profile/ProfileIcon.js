@@ -1,48 +1,60 @@
-import React, {Component} from 'react';
-import { Dropdown, 
-    DropdownMenu, 
-    DropdownToggle, 
-    DropdownItem 
-} from 'reactstrap';
+import React, { Component } from "react";
+import {
+  Dropdown,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+} from "reactstrap";
 
 class ProfileIcon extends Component {
-    constructor(props){
-        super(props);
-        this.toggle = this.toggle.bind(this);
-        this.state ={
-            dropdownOpen: false
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false,
+    };
+  }
 
-    toggle = () => {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
-    }
+  toggle = () => {
+    this.setState((prevState) => ({
+      dropdownOpen: !prevState.dropdownOpen,
+    }));
+  };
 
-    render() {
-        return (
-            <div className="pa4 tc">
-                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle
-                    tag="span"
-                    data-toggle="dropdown"
-                    aria-expanded={this.state.dropdownOpen}
-                >
-                    <img
-                        src="https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png"
-                        className="br-100 ba h3 w3 dib" alt="avatar" />
-                </DropdownToggle>
-                    <DropdownMenu end
-                    className="b--transparent shadow-5" 
-                    style={{marginTop: '20px', backgroundColor: 'rgba(255,255,255, 0.5)'}}>
-                        <DropdownItem onClick={this.props.toggleModal}>View Profile</DropdownItem>
-                        <DropdownItem onClick={() => this.props.onRouteChange('signout')}>Sign Out</DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="pa4 tc">
+        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <DropdownToggle
+            tag="span"
+            data-toggle="dropdown"
+            aria-expanded={this.state.dropdownOpen}
+          >
+            <img
+              src="https://toppng.com/uploads/preview/instagram-default-profile-picture-11562973083brycehrmyv.png"
+              className="br-100 ba h3 w3 dib"
+              alt="avatar"
+            />
+          </DropdownToggle>
+          <DropdownMenu
+            end
+            className="b--transparent shadow-5"
+            style={{
+              marginTop: "20px",
+              backgroundColor: "rgba(255,255,255, 0.5)",
+            }}
+          >
+            <DropdownItem onClick={this.props.toggleModal}>
+              View Profile
+            </DropdownItem>
+            <DropdownItem onClick={() => this.props.onRouteChange("signout")}>
+              Sign Out
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </div>
+    );
+  }
 }
 
 export default ProfileIcon;

@@ -29,7 +29,7 @@ class Register extends React.Component {
   };
 
   onSubmitRegister = () => {
-    fetchRegister(this.state.email,this.state.password,this.state.name)
+    fetchRegister(this.state.email, this.state.password, this.state.name)
       .then((response) => response.json())
       .then((user) => {
         if (user.id) {
